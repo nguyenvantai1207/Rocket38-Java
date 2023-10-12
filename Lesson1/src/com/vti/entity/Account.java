@@ -82,6 +82,14 @@ public class Account {
         this.position = position;
     }
 
+    public Group[] getGroups() {
+        return groups;
+    }
+
+    public void setGroups(Group[] groups) {
+        this.groups = groups;
+    }
+
     @Override
     public String toString() {
         return "Account{" +

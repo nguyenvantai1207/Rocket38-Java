@@ -1,13 +1,15 @@
 package com.vti.entity;
 
 
+import com.vti.utils.ScannerUtils;
+
 public class Department {
-    private static int countDepartment = 1;
+
     private int id;
     private String name;
 
     public Department(String name) {
-        this.id = countDepartment++;
+        this.id = ScannerUtils.countDepartment++;
         this.name = name;
     }
 

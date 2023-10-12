@@ -1,11 +1,11 @@
 package com.vti.frontend;
 
+import com.vti.backend.Lesson2;
 import com.vti.entity.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
-public class Main {
+public class Program1 {
     public static void main(String[] args) {
         Department department1 = new Department("Sales");
         Department department2 = new Department("Marketing");
@@ -44,7 +44,7 @@ public class Main {
         accounts5 = new Account[]{account1,account2,account3,account4,account5};
 
 
-        Group group1 = new Group("Group A",account1,LocalDate.of(2023,10,2),accounts1);
+        Group group1 = new Group("Group A",account1,LocalDate.of(2023,10,2),accounts3);
         Group group2 = new Group("Group B",account2,LocalDate.of(2023,10,3),accounts2);
         Group group3 = new Group("Group C",account3,LocalDate.of(2023,10,4),accounts3);
         Group group4 = new Group("Group D",account4,LocalDate.of(2023,10,5),accounts4);
@@ -84,5 +84,16 @@ public class Main {
         Exam exam3 = new Exam("EXAM003", "JavaScript Test", categoryQuestion6, 75, account3,LocalDate.of(2023,10,3));
         Exam exam4 = new Exam("EXAM004", ".NET Programming Quiz", categoryQuestion2, 50, account4,LocalDate.of(2023,10,4));
         Exam exam5 = new Exam("EXAM005", "Ruby on Rails Exam", categoryQuestion5, 90, account5,LocalDate.of(2023,10,5));
+
+        Lesson2 lesson2 = new Lesson2();
+        lesson2.runLesson2_Question1(account2);
+
+        lesson2.runLesson2_Question2(account2);
+
+        lesson2.runLesson2_Question5(group1);
+
+        lesson2.runLesson2_Question6(account2);
+
+        lesson2.runLesson2_Question7(account1);
     }
 }

@@ -51,6 +51,14 @@ public class Group {
         this.createDate = createDate;
     }
 
+    public Account[] getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Account[] accounts) {
+        this.accounts = accounts;
+    }
+
     @Override
     public String toString() {
         return "Group{" +
