@@ -1,0 +1,12 @@
+DROP DATABASE IF EXISTS TestingSystem;
+
+CREATE DATABASE TestingSystem;
+
+USE TestingSystem;
+
+CREATE TABLE `User`
+(
+    id TINYINT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    `password` VARCHAR(50) NOT NULL
+);

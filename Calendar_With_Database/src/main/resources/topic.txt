@@ -1,0 +1,6 @@
+=====Lịch Vạn Niên==========
+=====1. Đăng nhập==============
+=====2. Tạo Account=============
+=====3. Xem ngày hiện tại========== (chỉ đăng nhập rồi mới xem đươc)
+=====4. Xem thông tin chi tiết Account===== (chỉ đăng nhập rồi mới xem đươc)
+=====Q. Quit=================================
