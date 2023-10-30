@@ -60,37 +60,63 @@ public class Function {
 
     public static User login() {
         try {
-            String sql = "SELECT * FROM `User`";
+            String sql = "SELECT * FROM `User` WHERE username = ? AND password = ?";
             PreparedStatement preparedStatement = JdbcUtils.getConnection().prepareStatement(sql);
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            System.out.println("Enter a Username: ");
+            String checkedUserName = ScannerUtils.inputString();
+            System.out.println("Enter a Password: ");
+            String checkedPassword = ScannerUtils.inputString();
 
-            while (resultSet.next()) {
+            if (hasUsernameExisted(checkedUserName)) {
+                if (validatePassword(checkedPassword)) {
+                    preparedStatement.setString(1, checkedUserName);
+                    preparedStatement.setString(2, checkedPassword);
 
-                int id = resultSet.getInt("id");
-                String username = resultSet.getString("username");
-                String password = resultSet.getString("password");
+                    ResultSet resultSet = preparedStatement.executeQuery();
 
-                user.setId(id);
-                user.setUsername(username);
-                user.setPassword(password);
+                    while (resultSet.next()) {
+                        int id = resultSet.getInt("id");
+                        String userName = resultSet.getString("username");
+                        String password = resultSet.getString("password");
 
-                System.out.println("Enter a Username: ");
-                String checkedUserName = ScannerUtils.inputString();
-                System.out.println("Enter a Password: ");
-                String checkedPassword = ScannerUtils.inputString();
-
-                if (user.getUsername().equals(checkedUserName) && user.getPassword().equals(checkedPassword)) {
-                    System.out.println("Login Success!");
+                        user.setId(id);
+                        user.setUsername(userName);
+                        user.setPassword(password);
+                    }
+                    System.out.println("Login Successfully!");
                     return user;
                 } else {
-                    System.out.println("Login Failed!");
+                    System.out.println("Wrong password.Login Failed!");
                 }
+            } else {
+                System.out.println("Username is not existed!");
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+
+    public static Boolean validatePassword(String password) {
+        int count = 0;
+        try {
+            String sql = "SELECT COUNT(*) FROM `User` WHERE password = ?";
+            PreparedStatement preparedStatement = JdbcUtils.getConnection().prepareStatement(sql);
+
+            preparedStatement.setString(1, password);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            resultSet.next();
+
+            count = resultSet.getInt(1);
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return count > 0;
     }
 
     public static void getAccountInfo() {
