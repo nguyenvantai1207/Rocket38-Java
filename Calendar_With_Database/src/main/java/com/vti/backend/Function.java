@@ -69,7 +69,7 @@ public class Function {
             String checkedPassword = ScannerUtils.inputString();
 
             if (hasUsernameExisted(checkedUserName)) {
-                if (validatePassword(checkedPassword)) {
+                if (validatePassword(checkedUserName, checkedPassword)) {
                     preparedStatement.setString(1, checkedUserName);
                     preparedStatement.setString(2, checkedPassword);
 
@@ -98,14 +98,14 @@ public class Function {
         return null;
     }
 
-
-    public static Boolean validatePassword(String password) {
+    public static Boolean validatePassword(String username, String password) {
         int count = 0;
         try {
-            String sql = "SELECT COUNT(*) FROM `User` WHERE password = ?";
+            String sql = "SELECT COUNT(*) FROM `User` WHERE username = ? AND password = ?";
             PreparedStatement preparedStatement = JdbcUtils.getConnection().prepareStatement(sql);
 
-            preparedStatement.setString(1, password);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
